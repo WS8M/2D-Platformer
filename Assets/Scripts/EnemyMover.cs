@@ -26,8 +26,9 @@ public class EnemyMover : MonoBehaviour
 
     private void Walk()
     {
+        
         if (Math.Abs(_waypoints.GetPointPosition(_currentWaypointIndex).x - transform.position.x) < 0.1f) 
-            _currentWaypointIndex = (_currentWaypointIndex + 1) % _waypoints.CountOfPoints;
+            _currentWaypointIndex = ++_currentWaypointIndex % _waypoints.PointCount;
 
         _direction = _waypoints.GetPointPosition(_currentWaypointIndex).x - transform.position.x > 0 ? 1 : -1;
         

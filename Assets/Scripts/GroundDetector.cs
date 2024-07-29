@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GroundCheck : MonoBehaviour
+public class GroundDetector : MonoBehaviour
 {
    [SerializeField] private LayerMask _groundLayer;
    [SerializeField] private float _rayLength;

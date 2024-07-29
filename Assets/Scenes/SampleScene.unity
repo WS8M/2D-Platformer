@@ -2244,9 +2244,9 @@ MonoBehaviour:
   _speed: 2
   _maxFallSpeed: 10
   _coyoteDuration: 0.2
-  _groundCheck: {fileID: 657045365}
+  _groundDetector: {fileID: 657045365}
   _jumpForce: 5
-  _jumpHoldForce: 0.03
+  _jumpHoldForce: 0.25
   _jumpHoldDuration: 0.21
   _jumpGravityScale: 1
   _fallGravityScale: 3
@@ -2274,7 +2274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0b636eb38d1443dd95769194fa0e501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerMovement: {fileID: 1513947732}
+  _playerMover: {fileID: 1513947732}
 --- !u!114 &1513947735
 MonoBehaviour:
   m_ObjectHideFlags: 0

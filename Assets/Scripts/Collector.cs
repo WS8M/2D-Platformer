@@ -14,7 +14,7 @@ public class Collector : MonoBehaviour
     {
         if (other.gameObject.TryGetComponent(out Money money))
         {
-            _wallet.AddMoney(money.CoinQuantity);
+            _wallet.AddMoney(money.Value);
             money.Collect();
         }
     }

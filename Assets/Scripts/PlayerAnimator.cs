@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Animator))]
 public class PlayerAnimator : MonoBehaviour
@@ -7,7 +8,7 @@ public class PlayerAnimator : MonoBehaviour
     private const string VelocityX = nameof(VelocityX);
     private const string IsOnGround = nameof(IsOnGround);
 
-    [SerializeField] private PlayerMovement _playerMovement;
+    [SerializeField] private PlayerMover _playerMover;
     
     private Animator _animator;
 
@@ -15,8 +16,8 @@ public class PlayerAnimator : MonoBehaviour
 
     private void Update()
     {
-        _animator.SetFloat(VelocityY, _playerMovement.Velocity.y);
-        _animator.SetFloat(VelocityX,Mathf.Abs(_playerMovement.Velocity.x));
-        _animator.SetBool(IsOnGround, _playerMovement.IsOnGround);
+        _animator.SetFloat(VelocityY, _playerMover.Velocity.y);
+        _animator.SetFloat(VelocityX,Mathf.Abs(_playerMover.Velocity.x));
+        _animator.SetBool(IsOnGround, _playerMover.IsOnGround);
     }
 }

@@ -1,16 +1,16 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(PlayerInput))]
-public class PlayerMovement : MonoBehaviour
+public class PlayerMover : MonoBehaviour
 {
     [SerializeField] private Animator _animator;
 
     [SerializeField] private float _speed; //Speed reduction when crouching
     [SerializeField] private float _maxFallSpeed;
     [SerializeField] private float _coyoteDuration = 1f;
-
+    
     [Header("Jump Parameters")] 
-    [SerializeField] private GroundCheck _groundCheck;
+    [SerializeField] private GroundDetector _groundDetector;
 
     [SerializeField] private float _jumpForce;
     [SerializeField] private float _jumpHoldForce;
@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     private float _jumpTime;
     private float _coyoteTime;
 
-    public bool IsOnGround => _groundCheck.IsOnGround;
+    public bool IsOnGround => _groundDetector.IsOnGround;
     public Vector2 Velocity => _rigidbody.velocity;
 
     private void Awake()
@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (_rigidbody.velocity.y >= 0)
             _rigidbody.gravityScale = _jumpGravityScale;
@@ -47,10 +47,10 @@ public class PlayerMovement : MonoBehaviour
             _coyoteTime = _coyoteDuration;
 
         if (IsOnGround == false)
-            _coyoteTime -= Time.deltaTime;
+            _coyoteTime -= Time.fixedDeltaTime;
 
         Walk(_input.HorizontalInput);
-        Jumping();
+        Jump();
     }
 
     private void Walk(float horizontalInput)
@@ -62,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
             FlipCharacterDirection();
     }
 
-    private void Jumping()
+    private void Jump()
     {
         if (_input.JumpPressed && (IsOnGround || _coyoteTime > 0f) && _isJumping == false)
         {
@@ -75,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
             if (_jumpTime > 0)
             {
                 _rigidbody.AddForce(Vector2.up * _jumpHoldForce, ForceMode2D.Impulse);
-                _jumpTime -= Time.deltaTime;
+                _jumpTime -= Time.fixedDeltaTime;
             }
             else
             {
@@ -84,10 +84,11 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (_isJumping)
         {
-            _jumpTime -= Time.deltaTime;
+            _jumpTime -= Time.fixedDeltaTime;
         }
 
-        if (_jumpTime < 0) _isJumping = false;
+        if (_jumpTime < 0)
+            _isJumping = false;
 
         if (_rigidbody.velocity.y < -_maxFallSpeed)
             _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, -_maxFallSpeed);
