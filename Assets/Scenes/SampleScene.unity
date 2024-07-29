@@ -2246,7 +2246,7 @@ MonoBehaviour:
   _coyoteDuration: 0.2
   _groundDetector: {fileID: 657045365}
   _jumpForce: 5
-  _jumpHoldForce: 0.25
+  _jumpHoldForce: 0.2
   _jumpHoldDuration: 0.21
   _jumpGravityScale: 1
   _fallGravityScale: 3

@@ -2,13 +2,15 @@ using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
+    private const float MinHorizontalValue = -1f;
+    private const float MaxHorizontalValue = 1f;
+    
     private const string Horizontal = nameof(Horizontal);
     private const string Jump = nameof(Jump);
 
     private bool _readyToCLear;
     
     public float HorizontalInput { get; private set; }
-    public bool JumpPressed { get; private set; }
     public bool JumpHold { get; private set; }
 
     
@@ -28,16 +30,12 @@ public class PlayerInput : MonoBehaviour
 
     private void ProcessInputs()
     {
-        HorizontalInput += Input.GetAxis(Horizontal);
-        JumpPressed = JumpPressed || Input.GetButtonDown(Jump);
+        HorizontalInput = Input.GetAxis(Horizontal);
         JumpHold = JumpHold || Input.GetButton(Jump);
     }
 
     private void NormalizeHorizontalInput()
     {
-        const float MinHorizontalValue = -1f;
-        const float MaxHorizontalValue = 1f;
-        
         HorizontalInput = Mathf.Clamp(HorizontalInput, MinHorizontalValue, MaxHorizontalValue);
     }
 
@@ -47,7 +45,6 @@ public class PlayerInput : MonoBehaviour
         {
             HorizontalInput = 0;
             JumpHold = false;
-            JumpPressed = false;
 
             _readyToCLear = false;
         }

@@ -43,16 +43,54 @@ public class PlayerMover : MonoBehaviour
         if (_rigidbody.velocity.y < 0 && _coyoteTime < 0f)
             _rigidbody.gravityScale = _fallGravityScale;
 
-        if (IsOnGround)
+        if (IsOnGround && _isJumping == false)
             _coyoteTime = _coyoteDuration;
 
         if (IsOnGround == false)
             _coyoteTime -= Time.fixedDeltaTime;
 
+        if (_rigidbody.velocity.y < -_maxFallSpeed)
+            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, -_maxFallSpeed);
+        
+        if (_jumpTime <= 0)
+            _isJumping = false;
+        
+        if (_isJumping)
+            _jumpTime -= Time.fixedDeltaTime;
+        
         Walk(_input.HorizontalInput);
-        Jump();
+
+        if (_input.JumpHold)
+            JumpHandler();
+        else
+            _isJumping = false;
+    }
+    
+    private void JumpHandler()
+    {
+        if (_isJumping)
+            AddForceOnHoldJump();
+        else if(IsOnGround || _coyoteTime > 0f)
+            Jump();
     }
 
+    private void AddForceOnHoldJump()
+    {
+        _rigidbody.AddForce(Vector2.up * _jumpHoldForce, ForceMode2D.Impulse);
+    }
+    
+    private void Jump()
+    {
+        Vector2 velocity = _rigidbody.velocity;
+        _rigidbody.velocity = new Vector2(velocity.x, 0);
+        
+        _rigidbody.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
+        
+        _coyoteTime = 0;
+        _isJumping = true;
+        _jumpTime = _jumpHoldDuration;
+    }
+    
     private void Walk(float horizontalInput)
     {
         var xVelocity = horizontalInput * _speed;
@@ -61,39 +99,7 @@ public class PlayerMover : MonoBehaviour
         if (xVelocity * _direction < 0)
             FlipCharacterDirection();
     }
-
-    private void Jump()
-    {
-        if (_input.JumpPressed && (IsOnGround || _coyoteTime > 0f) && _isJumping == false)
-        {
-            _rigidbody.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
-            _isJumping = true;
-            _jumpTime = _jumpHoldDuration;
-        }
-        else if (_isJumping && _input.JumpHold)
-        {
-            if (_jumpTime > 0)
-            {
-                _rigidbody.AddForce(Vector2.up * _jumpHoldForce, ForceMode2D.Impulse);
-                _jumpTime -= Time.fixedDeltaTime;
-            }
-            else
-            {
-                _isJumping = false;
-            }
-        }
-        else if (_isJumping)
-        {
-            _jumpTime -= Time.fixedDeltaTime;
-        }
-
-        if (_jumpTime < 0)
-            _isJumping = false;
-
-        if (_rigidbody.velocity.y < -_maxFallSpeed)
-            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, -_maxFallSpeed);
-    }
-
+    
     private void FlipCharacterDirection()
     {
         _direction *= -1;

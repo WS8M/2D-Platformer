@@ -3,10 +3,14 @@ using UnityEngine;
 
 public class EnemyMover : MonoBehaviour
 {
+    private const float MaxDistanceToTarget = 0.1f;
+    private const int PositiveDirection = 1;
+    private const int NegativeDirection = -1;
+    
     [SerializeField] private float _moveSpeed;
     [SerializeField] private Waypoints _waypoints;
 
-    private int _currentWaypointIndex = 0;
+    private int _currentWaypointIndex;
 
     private Rigidbody2D _rigidbody;
     private int _direction = 1;
@@ -26,11 +30,10 @@ public class EnemyMover : MonoBehaviour
 
     private void Walk()
     {
-        
-        if (Math.Abs(_waypoints.GetPointPosition(_currentWaypointIndex).x - transform.position.x) < 0.1f) 
+        if (Math.Abs(_waypoints.GetPointPosition(_currentWaypointIndex).x - transform.position.x) < MaxDistanceToTarget) 
             _currentWaypointIndex = ++_currentWaypointIndex % _waypoints.PointCount;
 
-        _direction = _waypoints.GetPointPosition(_currentWaypointIndex).x - transform.position.x > 0 ? 1 : -1;
+        _direction = _waypoints.GetPointPosition(_currentWaypointIndex).x - transform.position.x > 0 ? PositiveDirection : NegativeDirection;
         
         _rigidbody.velocity = new Vector2(_moveSpeed * _direction, 0); 
     }
