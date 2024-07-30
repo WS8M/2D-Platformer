@@ -3,9 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D), typeof(PlayerInput))]
 public class PlayerMover : MonoBehaviour
 {
-    [SerializeField] private Animator _animator;
-
-    [SerializeField] private float _speed; //Speed reduction when crouching
+    [SerializeField] private float _speed;
     [SerializeField] private float _maxFallSpeed;
     [SerializeField] private float _coyoteDuration = 1f;
     
@@ -69,22 +67,22 @@ public class PlayerMover : MonoBehaviour
     private void JumpHandler()
     {
         if (_isJumping)
-            AddForceOnHoldJump();
+            AddForceOnHoldJump(_jumpHoldForce);
         else if(IsOnGround || _coyoteTime > 0f)
             Jump();
     }
 
-    private void AddForceOnHoldJump()
+    private void AddForceOnHoldJump(float force)
     {
-        _rigidbody.AddForce(Vector2.up * _jumpHoldForce, ForceMode2D.Impulse);
+        _rigidbody.AddForce(Vector2.up * force, ForceMode2D.Impulse);
     }
     
     private void Jump()
     {
         Vector2 velocity = _rigidbody.velocity;
         _rigidbody.velocity = new Vector2(velocity.x, 0);
-        
-        _rigidbody.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
+
+        AddForceOnHoldJump(_jumpForce);
         
         _coyoteTime = 0;
         _isJumping = true;

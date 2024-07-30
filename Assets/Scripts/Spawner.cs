@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] private Money _moneyPrefab;
+    [SerializeField] private Coins _coinsPrefab;
     [SerializeField] private float _respawnDuration;
     [SerializeField] private Transform _spawnPosition;
 
-    private Money _money;
+    private Coins _coins;
 
     private void OnEnable()
     {
-        _money = Instantiate(_moneyPrefab, _spawnPosition.position, quaternion.identity);
-        _money.Collected += Respawn;
+        _coins = Instantiate(_coinsPrefab, _spawnPosition.position, quaternion.identity);
+        _coins.Collected += Respawn;
     }
 
     private void OnDisable()
     {
-        _money.Collected -= Respawn;
+        _coins.Collected -= Respawn;
     }
 
     private void Respawn() => 
@@ -28,6 +28,6 @@ public class Spawner : MonoBehaviour
     {
         yield return new WaitForSeconds(_respawnDuration);
         
-        _money.gameObject.SetActive(true);
+        _coins.gameObject.SetActive(true);
     }
 }

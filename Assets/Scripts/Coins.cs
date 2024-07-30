@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class Money : MonoBehaviour
+public class Coins : MonoBehaviour
 {
     [SerializeField] private int _value;
 

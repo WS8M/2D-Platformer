@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Animator))]
 public class PlayerAnimator : MonoBehaviour

@@ -12,9 +12,9 @@ public class Collector : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.TryGetComponent(out Money money))
+        if (other.gameObject.TryGetComponent(out Coins money))
         {
-            _wallet.AddMoney(money.Value);
+            _wallet.AddCoins(money.Value);
             money.Collect();
         }
     }

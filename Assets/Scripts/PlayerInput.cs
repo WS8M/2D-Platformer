@@ -19,8 +19,6 @@ public class PlayerInput : MonoBehaviour
         ClearInputs();
         
         ProcessInputs();
-
-        NormalizeHorizontalInput();
     }
 
     private void FixedUpdate()
@@ -32,11 +30,6 @@ public class PlayerInput : MonoBehaviour
     {
         HorizontalInput = Input.GetAxis(Horizontal);
         JumpHold = JumpHold || Input.GetButton(Jump);
-    }
-
-    private void NormalizeHorizontalInput()
-    {
-        HorizontalInput = Mathf.Clamp(HorizontalInput, MinHorizontalValue, MaxHorizontalValue);
     }
 
     private void ClearInputs()

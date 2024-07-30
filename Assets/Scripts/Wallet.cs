@@ -2,15 +2,13 @@ using System;
 
 public class Wallet
 {
-    private int _coins;
+    public int Coins { get; private set; }
 
-    public int Coins => _coins;
-
-    public void AddMoney(int numberOfMoney)
+    public void AddCoins(int numberOfCoins)
     {
-        if (numberOfMoney < 0)
-            throw new ArgumentOutOfRangeException(nameof(numberOfMoney));
+        if (numberOfCoins < 0)
+            throw new ArgumentOutOfRangeException(nameof(numberOfCoins));
         
-        _coins += numberOfMoney;
+        Coins += numberOfCoins;
     }
 }

@@ -1521,7 +1521,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2b5fe147ff73442fa0ba0ad5a4fb1b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moneyPrefab: {fileID: 2839680302752902882, guid: 2a2a54b0ce01c4c888a8413b4025f084, type: 3}
+  _coinsPrefab: {fileID: 2839680302752902882, guid: 2a2a54b0ce01c4c888a8413b4025f084, type: 3}
   _respawnDuration: 1
   _spawnPosition: {fileID: 476923765}
 --- !u!4 &896794387
@@ -2240,7 +2240,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ee0173d700cc4fadb83d7c4ef1a1bc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 1513947726}
   _speed: 2
   _maxFallSpeed: 10
   _coyoteDuration: 0.2
