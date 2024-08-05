@@ -8,8 +8,7 @@ public class Collector : MonoBehaviour
     {
         _wallet = new Wallet();
     }
-
-
+    
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.TryGetComponent(out Coins money))

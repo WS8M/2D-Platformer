@@ -2,9 +2,6 @@ using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
-    private const float MinHorizontalValue = -1f;
-    private const float MaxHorizontalValue = 1f;
-    
     private const string Horizontal = nameof(Horizontal);
     private const string Jump = nameof(Jump);
 
@@ -12,7 +9,6 @@ public class PlayerInput : MonoBehaviour
     
     public float HorizontalInput { get; private set; }
     public bool JumpHold { get; private set; }
-
     
     private void Update()
     {

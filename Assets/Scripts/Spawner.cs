@@ -9,6 +9,9 @@ public class Spawner : MonoBehaviour
     [SerializeField] private Transform _spawnPosition;
 
     private Coins _coins;
+    private WaitForSeconds _wait;
+
+    private void Awake() => _wait = new WaitForSeconds(_respawnDuration);
 
     private void OnEnable()
     {
@@ -26,7 +29,7 @@ public class Spawner : MonoBehaviour
 
     private IEnumerator SpawnCoinWithDelay()
     {
-        yield return new WaitForSeconds(_respawnDuration);
+        yield return _wait;
         
         _coins.gameObject.SetActive(true);
     }
