@@ -12,8 +12,9 @@ public class PlayerInput : MonoBehaviour
     
     private void Update()
     {
-        ClearInputs();
-        
+        if (_readyToCLear) 
+            ClearInputs();
+
         ProcessInputs();
     }
 
@@ -30,12 +31,9 @@ public class PlayerInput : MonoBehaviour
 
     private void ClearInputs()
     {
-        if (_readyToCLear)
-        {
-            HorizontalInput = 0;
-            JumpHold = false;
+        HorizontalInput = 0;
+        JumpHold = false;
 
-            _readyToCLear = false;
-        }
+        _readyToCLear = false;
     }
 }

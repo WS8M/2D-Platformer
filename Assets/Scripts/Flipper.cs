@@ -10,7 +10,7 @@ public class Flipper : MonoBehaviour
         int direction = isMovingRight ? RightDirection : LeftDirection;
         
         var scale = transform.localScale;
-        scale.x = direction;
+        scale.x = Mathf.Abs(scale.x) * direction;
 
         transform.localScale = scale;
     }

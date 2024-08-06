@@ -1,27 +1,28 @@
 using System.Collections;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] private Coins _coinsPrefab;
+    [FormerlySerializedAs("_coinsPrefab")] [SerializeField] private Coin _coinPrefab;
     [SerializeField] private float _respawnDuration;
     [SerializeField] private Transform _spawnPosition;
 
-    private Coins _coins;
+    private Coin _coin;
     private WaitForSeconds _wait;
 
     private void Awake() => _wait = new WaitForSeconds(_respawnDuration);
 
     private void OnEnable()
     {
-        _coins = Instantiate(_coinsPrefab, _spawnPosition.position, quaternion.identity);
-        _coins.Collected += Respawn;
+        _coin = Instantiate(_coinPrefab, _spawnPosition.position, quaternion.identity);
+        _coin.Collected += Respawn;
     }
 
     private void OnDisable()
     {
-        _coins.Collected -= Respawn;
+        _coin.Collected -= Respawn;
     }
 
     private void Respawn() => 
@@ -31,6 +32,6 @@ public class Spawner : MonoBehaviour
     {
         yield return _wait;
         
-        _coins.gameObject.SetActive(true);
+        _coin.gameObject.SetActive(true);
     }
 }

@@ -1521,7 +1521,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2b5fe147ff73442fa0ba0ad5a4fb1b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _coinsPrefab: {fileID: 2839680302752902882, guid: 2a2a54b0ce01c4c888a8413b4025f084, type: 3}
+  _coinPrefab: {fileID: 2839680302752902882, guid: 2a2a54b0ce01c4c888a8413b4025f084, type: 3}
   _respawnDuration: 1
   _spawnPosition: {fileID: 476923765}
 --- !u!4 &896794387
@@ -1714,6 +1714,7 @@ GameObject:
   - component: {fileID: 1153540069}
   - component: {fileID: 1153540071}
   - component: {fileID: 1153540070}
+  - component: {fileID: 1153540072}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -1876,7 +1877,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff2969952a0184523b8abc1bcac50746, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyMovement: {fileID: 1153540069}
+  _enemyMover: {fileID: 1153540069}
 --- !u!95 &1153540071
 Animator:
   serializedVersion: 5
@@ -1898,6 +1899,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1153540072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1153540064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dc8c50f52f7549eb8ec83bf3cfc98c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1159731208
 GameObject:
   m_ObjectHideFlags: 0

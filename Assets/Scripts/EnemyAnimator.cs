@@ -5,7 +5,7 @@ public class EnemyAnimator : MonoBehaviour
 {
     private const string VelocityX = nameof(VelocityX);
 
-    [SerializeField] private EnemyMover _enemyMovement;
+    [SerializeField] private EnemyMover _enemyMover;
     
     private Animator _animator;
 
@@ -13,6 +13,6 @@ public class EnemyAnimator : MonoBehaviour
 
     private void Update()
     {
-        _animator.SetFloat(VelocityX,Mathf.Abs(_enemyMovement.Velocity.x));
+        _animator.SetFloat(VelocityX,Mathf.Abs(_enemyMover.Velocity.x));
     }
 }

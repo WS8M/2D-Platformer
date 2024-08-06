@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Rigidbody2D),typeof(Flipper))]
 public class EnemyMover : MonoBehaviour
 {
     private const float MaxDistanceToTarget = 0.1f;
@@ -14,38 +14,38 @@ public class EnemyMover : MonoBehaviour
     private int _currentWaypointIndex;
 
     private Rigidbody2D _rigidbody;
-    private int _direction = 1;
+    private Flipper _flipper;
+    private int _currentDirection = 1;
 
     public Vector2 Velocity => _rigidbody.velocity;
     
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+        _flipper = GetComponent<Flipper>();
     }
 
     private void Update()
     {
         Walk();
-        
-        FlipCharacter();
     }
 
     private void Walk()
     {
-        if (Math.Abs(_waypoints.GetPointPosition(_currentWaypointIndex).x - transform.position.x) < MaxDistanceToTarget) 
+        if (Math.Abs(_waypoints.GetPointPosition(_currentWaypointIndex).x - transform.position.x) < MaxDistanceToTarget)
             _currentWaypointIndex = ++_currentWaypointIndex % _waypoints.PointCount;
 
-        _direction = _waypoints
-            .GetPointPosition(_currentWaypointIndex).x - transform.position.x > 0 ? RightDirection : LeftDirection;
-        
-        _rigidbody.velocity = new Vector2(_moveSpeed * _direction, 0); 
-    }
-    
-    private void FlipCharacter()
-    {
-        Vector3 scale = transform.localScale;
-        scale.x = _direction;
-        
-        transform.localScale = scale;
+        var direction = _waypoints
+                .GetPointPosition(_currentWaypointIndex).x - transform.position.x > 0
+                ? RightDirection
+                : LeftDirection;
+
+        if (direction != _currentDirection)
+        {
+            _currentDirection = direction;
+            _flipper.Flip(_currentDirection > 0);
+        }
+
+        _rigidbody.velocity = new Vector2(_moveSpeed * _currentDirection, 0); 
     }
 }
