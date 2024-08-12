@@ -1,11 +1,10 @@
 using System.Collections;
 using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-public class Spawner : MonoBehaviour
+public class CoinSpawner : MonoBehaviour
 {
-    [FormerlySerializedAs("_coinsPrefab")] [SerializeField] private Coin _coinPrefab;
+    [SerializeField] private Coin _coinPrefab;
     [SerializeField] private float _respawnDuration;
     [SerializeField] private Transform _spawnPosition;
 
