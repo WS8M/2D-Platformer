@@ -2,11 +2,9 @@ using System.Collections;
 using Unity.Mathematics;
 using UnityEngine;
 
-public class CoinSpawner : MonoBehaviour
+public class CoinSpawner : Spawner<Coin>
 {
-    [SerializeField] private Coin _coinPrefab;
     [SerializeField] private float _respawnDuration;
-    [SerializeField] private Transform _spawnPosition;
 
     private Coin _coin;
     private WaitForSeconds _wait;
@@ -15,16 +13,16 @@ public class CoinSpawner : MonoBehaviour
 
     private void OnEnable()
     {
-        _coin = Instantiate(_coinPrefab, _spawnPosition.position, quaternion.identity);
-        _coin.Collected += Respawn;
+        _coin = Instantiate(Prefab, SpawnPosition.position, quaternion.identity);
+        _coin.Collected += Spawn;
     }
 
     private void OnDisable()
     {
-        _coin.Collected -= Respawn;
+        _coin.Collected -= Spawn;
     }
 
-    private void Respawn() => 
+    protected override void Spawn() => 
         StartCoroutine(SpawnCoinWithDelay());
 
     private IEnumerator SpawnCoinWithDelay()

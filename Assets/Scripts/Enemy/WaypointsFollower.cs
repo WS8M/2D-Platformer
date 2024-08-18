@@ -10,7 +10,6 @@ public class WaypointsFollower : MonoBehaviour
 
     public Vector3 GetTargetPosition()
     {
-        Debug.Log("eeeee");
         if (Mathf.Abs(_waypoints.GetPointPosition(_currentWaypointIndex).x - transform.position.x) < MaxDistanceToTarget)
             _currentWaypointIndex = ++_currentWaypointIndex % _waypoints.PointCount;
         

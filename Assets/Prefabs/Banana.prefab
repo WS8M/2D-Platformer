@@ -10,11 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5094700036308485871}
   - component: {fileID: 8477222806822683811}
-  - component: {fileID: 7261693490813789320}
-  - component: {fileID: 2839680302752902882}
   - component: {fileID: 5683197948984142696}
+  - component: {fileID: 261660813209909689}
   m_Layer: 0
-  m_Name: Strawberry
+  m_Name: Banana
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 1775669009216684005, guid: a2c110585eb710b408972fbc3b96136d, type: 3}
+  m_Sprite: {fileID: -5728686177044832811, guid: 050f72dabb9eb4d0eab9bd11b3ec99ee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -87,40 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &7261693490813789320
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5350924117714531409}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a4b03aee3690f43db9095c3ba78347d2, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2839680302752902882
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5350924117714531409}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e76239a402b4c469fb99f2ecf0935478, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _value: 1
 --- !u!58 &5683197948984142696
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -153,6 +118,19 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.02, y: 0}
+  m_Offset: {x: 0, y: 0.03}
   serializedVersion: 2
   m_Radius: 0.25
+--- !u!114 &261660813209909689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5350924117714531409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54392ef1aad664cc1bd68dc9f87079d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _value: 20
