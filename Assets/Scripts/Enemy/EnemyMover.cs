@@ -20,7 +20,7 @@ public class EnemyMover : Mover
         if (direction != Direction)
         {
             Direction = direction;
-            gameObject.Flip(Direction > 0);
+            transform.Flip(Direction > 0);
         }
         Rigidbody.velocity = new Vector2(Speed * Direction, Rigidbody.velocity.y); 
     }

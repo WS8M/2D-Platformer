@@ -17,6 +17,6 @@ public class PlayerMover : Mover
         Direction *= -1;
         bool isMovingRight = Direction > 0;
         
-        gameObject.Flip(isMovingRight);
+        transform.Flip(isMovingRight);
     }
 }

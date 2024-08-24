@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -6,16 +7,19 @@ public class Attacker : MonoBehaviour
     [SerializeField] private float _damage;
     [SerializeField] private float _delayAfterAttack;
 
+    private UnitHealth _target;
+
     private bool _isCanAttack = true;
     private bool _currentTime;
-    
+
     private WaitForSeconds _wait;
 
-    private void Awake() => 
+    public event Action Attacked;
+
+    private void Awake() =>
         _wait = new WaitForSeconds(_delayAfterAttack);
 
-    
-    private void OnCollisionStay2D(Collision2D other)
+    private void OnTriggerStay2D(Collider2D other)
     {
         if (_isCanAttack)
         {
@@ -23,6 +27,7 @@ public class Attacker : MonoBehaviour
             {
                 StartCoroutine(ReadinessTimer());
                 health.TakeDamage(_damage);
+                Attacked?.Invoke();
             }
         }
     }

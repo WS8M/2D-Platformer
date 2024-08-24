@@ -7,7 +7,9 @@ public class UnitHealth : MonoBehaviour
 
     private float _health;
 
-    public event Action<float> OnHealthChanged;
+    public event Action<float> HealthChanged;
+    public event Action TookDamage;
+    public event Action Died;
 
     private void Awake()
     {
@@ -20,8 +22,12 @@ public class UnitHealth : MonoBehaviour
 
         private set
         {
-            _health = Mathf.Clamp(value, 0, _maxHealth); 
-            OnHealthChanged?.Invoke(_health);
+            _health = Mathf.Clamp(value, 0, _maxHealth);
+
+            if (_health == 0)
+                Died?.Invoke();
+            else
+                HealthChanged?.Invoke(_health);
         }
     }
 
@@ -31,6 +37,7 @@ public class UnitHealth : MonoBehaviour
             throw new ArgumentOutOfRangeException(nameof(damage));
 
         Health -= damage;
+        TookDamage?.Invoke();
     }
 
     public void Healing(float healingValue)

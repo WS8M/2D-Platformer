@@ -5,7 +5,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private EnemyMover _mover;
     [SerializeField] private WaypointsFollower _waypointsFollower;
     [SerializeField] private PlayerStalk _playerStalk;
-    
+
     private void FixedUpdate()
     {
         if (_playerStalk.TryGetPlayerPosition(out Vector3 position))

@@ -3,7 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class EnemyAnimator : MonoBehaviour
 {
-    private const string VelocityX = nameof(VelocityX);
+    private static int VelocityX = Animator.StringToHash(nameof(VelocityX));
 
     [SerializeField] private EnemyMover _enemyMover;
     

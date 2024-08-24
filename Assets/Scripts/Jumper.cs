@@ -57,6 +57,12 @@ public class Jumper : MonoBehaviour
         else
             _isJumping = false;
     }
+    
+    public void JumpAfterAttack()
+    {
+        ResetYSpeed();
+        AddForceOnHoldJump(_jumpForce);
+    }
 
     private void JumpHandler()
     {
@@ -68,9 +74,7 @@ public class Jumper : MonoBehaviour
 
     private void Jump()
     {
-        Vector2 velocity = _rigidbody.velocity;
-        _rigidbody.velocity = new Vector2(velocity.x, 0);
-
+        ResetYSpeed();
         AddForceOnHoldJump(_jumpForce);
         
         _coyoteTime = 0;
@@ -82,4 +86,10 @@ public class Jumper : MonoBehaviour
     {
         _rigidbody.AddForce(Vector2.up * force, ForceMode2D.Impulse);
     }
+
+    private void ResetYSpeed()
+    {
+        Vector2 velocity = _rigidbody.velocity;
+        _rigidbody.velocity = new Vector2(velocity.x, 0);
+    }  
 }
