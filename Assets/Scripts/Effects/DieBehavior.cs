@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class DieEffect : Effect<UnitHealth>
+public class DieBehavior : HealthListener
 {
     [SerializeField] private Rigidbody2D _rigidbody;
     [SerializeField] private Collider2D _collider;
@@ -9,9 +9,10 @@ public class DieEffect : Effect<UnitHealth>
     [SerializeField] private float _torque;
     [SerializeField] private float _durationBeforeDestroyGameObjects;
     [SerializeField] private Enemy _destroyedObject;
-    private void OnEnable() => DependedObject.Died += Play;
+    
+    private void OnEnable() => Health.Died += Play;
 
-    private void OnDisable() => DependedObject.Died -= Play;
+    private void OnDisable() => Health.Died -= Play;
 
     protected override void Play()
     {
@@ -32,7 +33,5 @@ public class DieEffect : Effect<UnitHealth>
         var wait = new WaitForSeconds(_durationBeforeDestroyGameObjects);
 
         yield return wait;
-        
-        Destroy(_destroyedObject.gameObject);
     }
 }

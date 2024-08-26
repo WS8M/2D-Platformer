@@ -1,9 +1,9 @@
 using System;
 using UnityEngine;
 
-public abstract class Effect<T>: MonoBehaviour where T : MonoBehaviour
+public abstract class HealthListener: MonoBehaviour
 {
-    [SerializeField] protected T DependedObject;
+    [SerializeField] protected UnitHealth Health;
     public event Action Ended;
     
     protected abstract void Play();

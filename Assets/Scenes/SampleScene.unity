@@ -1773,7 +1773,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f627813c779bf40d9bef8a5ff53e76ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 100
+  _maxHealth: 50
 --- !u!114 &1135209860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1799,9 +1799,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3251f8ea38d14b7bba0c76175696237, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _health: {fileID: 1135209859}
   _mover: {fileID: 1135209860}
   _waypointsFollower: {fileID: 1135209863}
   _playerStalk: {fileID: 2099779798}
+  _dieBehavior: {fileID: 1153540077}
 --- !u!114 &1135209863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2011,7 +2013,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ccb7108f0ad743aeab7d849be32aa4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DependedObject: {fileID: 1135209859}
+  Health: {fileID: 1135209859}
   _spriteRenderer: {fileID: 1153540067}
   _color: {r: 1, g: 0.3820755, b: 0.3820755, a: 1}
   _curve:
@@ -2060,7 +2062,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab67a9499206c4f82ac4859cab0e0290, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DependedObject: {fileID: 1135209859}
+  Health: {fileID: 1135209859}
   _rigidbody: {fileID: 1135209864}
   _collider: {fileID: 1135209865}
   _jumpforce: 3
@@ -2618,7 +2620,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ccb7108f0ad743aeab7d849be32aa4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DependedObject: {fileID: 1513947739}
+  Health: {fileID: 1513947739}
   _spriteRenderer: {fileID: 1513947727}
   _color: {r: 1, g: 0.3820755, b: 0.3820755, a: 1}
   _curve:

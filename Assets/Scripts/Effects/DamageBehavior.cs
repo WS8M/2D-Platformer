@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-public class DamageEffect : Effect<UnitHealth>
+public class DamageBehavior : HealthListener
 {
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private Color _color;
@@ -10,9 +10,9 @@ public class DamageEffect : Effect<UnitHealth>
     private float _currentTime;
     private Color _originalColor;
 
-    private void OnEnable() => DependedObject.TookDamage += Play;
+    private void OnEnable() => Health.TookDamage += Play;
 
-    private void OnDisable() => DependedObject.TookDamage -= Play;
+    private void OnDisable() => Health.TookDamage -= Play;
 
     private void Awake() => _originalColor = _spriteRenderer.color;
 
