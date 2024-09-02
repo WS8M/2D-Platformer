@@ -2,16 +2,8 @@ using UnityEngine;
 
 public static class Flipper
 {
-    private const int RightDirection = 1;
-    private const int LeftDirection = -1;
-
-    public static void Flip(this Transform transform, bool isMovingRight)
+    public static void Flip(this SpriteRenderer renderer, bool isMovingRigh)
     {
-        int direction = isMovingRight ? RightDirection : LeftDirection;
-        
-        var scale = transform.localScale;
-        scale.x = Mathf.Abs(scale.x) * direction;
-
-        transform.localScale = scale;
+        renderer.flipX = isMovingRigh == false;
     }
 }

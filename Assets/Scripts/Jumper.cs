@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(PlayerInput))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class Jumper : MonoBehaviour
 {
     [SerializeField] private float _maxFallSpeed = 10f;
@@ -14,7 +14,6 @@ public class Jumper : MonoBehaviour
     [SerializeField] private float _jumpGravityScale = 1f;
     [SerializeField] private float _fallGravityScale = 3f;
 
-    private PlayerInput _input;
     private Rigidbody2D _rigidbody;
     
     private float _jumpTime;
@@ -23,13 +22,10 @@ public class Jumper : MonoBehaviour
     
     public bool IsOnGround => _groundDetector.IsOnGround;
 
-    private void Awake()
-    {
-        _input = GetComponent<PlayerInput>();
+    private void Awake() => 
         _rigidbody = GetComponent<Rigidbody2D>();
-    }
 
-    private void FixedUpdate()
+    public void Jump(PlayerInput input)
     {
         if (_rigidbody.velocity.y >= 0)
             _rigidbody.gravityScale = _jumpGravityScale;
@@ -39,7 +35,7 @@ public class Jumper : MonoBehaviour
 
         if (IsOnGround && _isJumping == false)
             _coyoteTime = _coyoteDuration;
-
+            
         if (IsOnGround == false)
             _coyoteTime -= Time.fixedDeltaTime;
 
@@ -52,7 +48,7 @@ public class Jumper : MonoBehaviour
         if (_isJumping)
             _jumpTime -= Time.fixedDeltaTime;
         
-        if (_input.JumpHold)
+        if (input.JumpHold)
             JumpHandler();
         else
             _isJumping = false;
@@ -69,10 +65,10 @@ public class Jumper : MonoBehaviour
         if (_isJumping)
             AddForceOnHoldJump(_jumpHoldForce);
         else if(IsOnGround || _coyoteTime > 0f)
-            Jump();
+            StartJumping();
     }
 
-    private void Jump()
+    private void StartJumping()
     {
         ResetYSpeed();
         AddForceOnHoldJump(_jumpForce);

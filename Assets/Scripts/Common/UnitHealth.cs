@@ -13,7 +13,7 @@ public class UnitHealth : MonoBehaviour
 
     private void Awake()
     {
-        _health = _maxHealth;
+        Health = _maxHealth;
     }
 
     public float Health
@@ -22,14 +22,20 @@ public class UnitHealth : MonoBehaviour
 
         private set
         {
+            if(value == _health)
+                return;
+            
             _health = Mathf.Clamp(value, 0, _maxHealth);
 
+            
+            HealthChanged?.Invoke(_health);
+            
             if (_health == 0)
                 Died?.Invoke();
-            else
-                HealthChanged?.Invoke(_health);
         }
     }
+
+    public float MaxHealth => _maxHealth;
 
     public void TakeDamage(float damage)
     {

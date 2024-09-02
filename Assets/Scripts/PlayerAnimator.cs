@@ -1,26 +1,22 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Animator))]
-public class PlayerAnimator : MonoBehaviour
+public class PlayerAnimator : UnitAnimator
 {
     private static int VelocityY = Animator.StringToHash(nameof(VelocityY));
     private static int VelocityX = Animator.StringToHash(nameof(VelocityX));
     private static int IsOnGround = Animator.StringToHash(nameof(IsOnGround));
-
-    [SerializeField] private PlayerMover _playerMover;
-    [SerializeField] private Jumper _jumper;
     
-    private Animator _animator;
+    [SerializeField] private Jumper _jumper;
 
     private void Awake()
     {
-        _animator = GetComponent<Animator>();
+        Animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
-        _animator.SetFloat(VelocityY, _playerMover.Velocity.y);
-        _animator.SetFloat(VelocityX,Mathf.Abs(_playerMover.Velocity.x));
-        _animator.SetBool(IsOnGround, _jumper.IsOnGround);
+        Animator.SetFloat(VelocityY, Mover.Velocity.y);
+        Animator.SetFloat(VelocityX,Mathf.Abs(Mover.Velocity.x));
+        Animator.SetBool(IsOnGround, _jumper.IsOnGround);
     }
 }

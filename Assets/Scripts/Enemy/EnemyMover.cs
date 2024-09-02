@@ -17,11 +17,9 @@ public class EnemyMover : Mover
             ? RightDirection
             : LeftDirection;
         
-        if (direction != Direction)
-        {
-            Direction = direction;
-            transform.Flip(Direction > 0);
-        }
+        if (direction != Direction) 
+            SwitchDirection(Direction = direction);
+        
         Rigidbody.velocity = new Vector2(Speed * Direction, Rigidbody.velocity.y); 
     }
 }

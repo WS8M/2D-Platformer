@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         _mover.Walk(_input.HorizontalInput);
+        _jumper.Jump(_input);
     }
 
     private void OnAttacked()

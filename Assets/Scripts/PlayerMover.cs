@@ -9,14 +9,6 @@ public class PlayerMover : Mover
         Rigidbody.velocity = new Vector2(xVelocity, Rigidbody.velocity.y);
 
         if (xVelocity * Direction < 0)
-            FlipCharacterDirection();
-    }
-    
-    private void FlipCharacterDirection()
-    {
-        Direction *= -1;
-        bool isMovingRight = Direction > 0;
-        
-        transform.Flip(isMovingRight);
+            SwitchDirection(Direction *= -1);
     }
 }
