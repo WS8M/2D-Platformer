@@ -9,6 +9,6 @@ public class EnemyAnimator : UnitAnimator
 
     private void Update()
     {
-        Animator.SetFloat(VelocityX,Mathf.Abs(Mover.Velocity.x));
+        Animator.SetFloat(VelocityX,Mathf.Abs(_mover.Velocity.x));
     }
 }

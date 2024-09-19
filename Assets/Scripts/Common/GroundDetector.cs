@@ -2,16 +2,31 @@ using UnityEngine;
 
 public class GroundDetector : MonoBehaviour
 {
+   [SerializeField] private float _raycastDelay = 0.1f;
    [SerializeField] private LayerMask _groundLayer;
    [SerializeField] private float _rayLength;
    [SerializeField] private Transform[] _rayStartPoints;
-   [SerializeField] private Color _rayColor;
 
+   private float _currentTime;
    private bool _isOnGround;
 
    public bool IsOnGround => _isOnGround;
 
-   private void Update()
+   private void FixedUpdate()
+   {
+      if (_currentTime >= 0)
+      {
+         _currentTime -= Time.fixedDeltaTime;
+         
+         if (_currentTime < 0)
+         {
+            _currentTime = _raycastDelay;
+            RaycastIntoGround();
+         }
+      }
+   }
+
+   private void RaycastIntoGround()
    {
       foreach (var point in _rayStartPoints)
       {

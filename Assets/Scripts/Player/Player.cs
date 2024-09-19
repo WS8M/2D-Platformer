@@ -4,10 +4,11 @@ using UnityEngine;
     typeof(PlayerInput),
     typeof(PlayerMover), 
     typeof(Jumper))]
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IHealthRecoverable
 {
     [SerializeField] private Attacker _attacker;
-
+    [SerializeField] private Health _health;
+    
     private PlayerInput _input;
     private PlayerMover _mover;
     private Jumper _jumper;
@@ -35,8 +36,9 @@ public class Player : MonoBehaviour
         _jumper.Jump(_input);
     }
 
-    private void OnAttacked()
-    {
+    private void OnAttacked() => 
         _jumper.JumpAfterAttack();
-    }
+
+    public void RecoverHealth(float recoveryValue) => 
+        _health.TakeHealing(recoveryValue);
 }

@@ -9,7 +9,7 @@ public class Attacker : MonoBehaviour
 
     private Health _target;
 
-    private bool _isCanAttack = true;
+    private bool _canAttack = true;
     private bool _currentTime;
 
     private WaitForSeconds _wait;
@@ -21,23 +21,23 @@ public class Attacker : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (_isCanAttack)
+        if (_canAttack)
         {
             if (other.gameObject.TryGetComponent(out Health health))
             {
-                StartCoroutine(ReadinessTimer());
+                StartCoroutine(CountDelayBetweenAttack());
                 health.TakeDamage(_damage);
                 Attacked?.Invoke();
             }
         }
     }
 
-    private IEnumerator ReadinessTimer()
+    private IEnumerator CountDelayBetweenAttack()
     {
-        _isCanAttack = false;
+        _canAttack = false;
         
         yield return _wait;
         
-        _isCanAttack = true;
+        _canAttack = true;
     }
 }

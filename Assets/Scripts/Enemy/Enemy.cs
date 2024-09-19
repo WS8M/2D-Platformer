@@ -1,9 +1,10 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private Health _health;
-    [SerializeField] private EnemyMover _mover;
+    [FormerlySerializedAs("_flipable")] [SerializeField] private EnemyMover _mover;
     [SerializeField] private WaypointsFollower _waypointsFollower;
     [SerializeField] private PlayerStalk _playerStalk;
     [SerializeField] private DieBehavior _dieBehavior;

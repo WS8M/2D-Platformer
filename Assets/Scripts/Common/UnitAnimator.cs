@@ -1,18 +1,19 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Animator))]
 public class UnitAnimator : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer _spriteRenderer;
-    [SerializeField] protected Mover Mover;
+    [FormerlySerializedAs("_flipable")] [SerializeField] protected Mover _mover;
 
     protected Animator Animator;
     
     private void OnEnable() => 
-        Mover.DirectionSwitched += Flip;
+        _mover.DirectionSwitched += Flip;
 
     private void OnDisable() => 
-        Mover.DirectionSwitched -= Flip;
+        _mover.DirectionSwitched -= Flip;
 
     private void Awake() => 
         Animator = GetComponent<Animator>();

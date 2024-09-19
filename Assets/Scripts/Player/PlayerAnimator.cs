@@ -15,8 +15,8 @@ public class PlayerAnimator : UnitAnimator
 
     private void Update()
     {
-        Animator.SetFloat(VelocityY, Mover.Velocity.y);
-        Animator.SetFloat(VelocityX,Mathf.Abs(Mover.Velocity.x));
+        Animator.SetFloat(VelocityY, _mover.Velocity.y);
+        Animator.SetFloat(VelocityX,Mathf.Abs(_mover.Velocity.x));
         Animator.SetBool(IsOnGround, _jumper.IsOnGround);
     }
 }

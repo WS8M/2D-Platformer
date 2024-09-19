@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public static class Flipper
+public static class SpriteRendererExtensions
 {
     public static void Flip(this SpriteRenderer renderer, bool isMovingRigh)
     {
