@@ -7,7 +7,7 @@ public class Attacker : MonoBehaviour
     [SerializeField] private float _damage;
     [SerializeField] private float _delayAfterAttack;
 
-    private UnitHealth _target;
+    private Health _target;
 
     private bool _isCanAttack = true;
     private bool _currentTime;
@@ -23,7 +23,7 @@ public class Attacker : MonoBehaviour
     {
         if (_isCanAttack)
         {
-            if (other.gameObject.TryGetComponent(out UnitHealth health))
+            if (other.gameObject.TryGetComponent(out Health health))
             {
                 StartCoroutine(ReadinessTimer());
                 health.TakeDamage(_damage);

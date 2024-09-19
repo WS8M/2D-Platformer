@@ -1,55 +1,36 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class HealthBarViewer : HealthViewer
 {
-    [SerializeField] protected Slider _slider;
-    [SerializeField] private Color _color;
-    [SerializeField] private float _secondsToChange;
+    [SerializeField] protected Slider Slider;
+    [SerializeField] protected Color Color;
     
     private Image _filledImage;
     
-    private void OnValidate() => 
-        SetFilledArea();
-    
-    private void Awake()
+    protected virtual void Awake()
     {
-        _slider.maxValue = UnitHealth.MaxHealth;
-        _slider.minValue = 0;
-        _slider.value = UnitHealth.MaxHealth;
+        Slider.maxValue = Health.MaxValue;
+        Slider.minValue = 0;
+        Slider.value = Health.MaxValue;
         SetFilledArea();
     }
 
-    protected override void OnHealthChanged(float healthValue)
+    protected override void OnChanged(float healthValue)
     {
-        StartCoroutine(ChangeValue(healthValue));
+        ChangeValue(healthValue);
     }
 
-    private IEnumerator ChangeValue(float targetValue)
+    private void ChangeValue(float targetValue)
     {
-        if (_secondsToChange <= 0)
-        {
-            _slider.value = targetValue;
-            yield break;
-        }
-        
-        var value = _slider.value;
-        var deltaValue = Mathf.Abs(targetValue - value);
-        
-        while (value != targetValue)
-        {
-            value = Mathf.MoveTowards(value, targetValue, deltaValue * _secondsToChange * Time.deltaTime );
-            _slider.value = value;
-            yield return new WaitForEndOfFrame();
-        }
+        Slider.value = targetValue;
     }
     
     private void SetFilledArea()
     {
-        _filledImage = _slider.fillRect.GetComponent<Image>();
+        _filledImage = Slider.fillRect.GetComponent<Image>();
         
         if (_filledImage is not null) 
-            _filledImage.color = _color;
+            _filledImage.color = Color;
     }
 }

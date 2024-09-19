@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private UnitHealth _health;
+    [SerializeField] private Health _health;
     [SerializeField] private EnemyMover _mover;
     [SerializeField] private WaypointsFollower _waypointsFollower;
     [SerializeField] private PlayerStalk _playerStalk;

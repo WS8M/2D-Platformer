@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Collector : MonoBehaviour
 {
-    [SerializeField]private UnitHealth _unitHealth;
+    [SerializeField] private Health _health;
 
     private Wallet _wallet;
 
@@ -21,7 +21,7 @@ public class Collector : MonoBehaviour
                     _wallet.AddCoins(coin.Value);
                     break;
                 case Medicine medicine:
-                    _unitHealth.Healing(medicine.Value);
+                    _health.TakeHealing(medicine.Value);
                     break;
             }
 
