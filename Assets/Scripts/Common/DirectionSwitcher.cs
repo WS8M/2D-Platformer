@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public abstract class Mover : MonoBehaviour
+public abstract class DirectionSwitcher : MonoBehaviour
 {
     [SerializeField] protected float Speed;
     [SerializeField] protected Rigidbody2D Rigidbody;

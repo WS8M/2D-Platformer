@@ -5,15 +5,15 @@ using UnityEngine.Serialization;
 public class UnitAnimator : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer _spriteRenderer;
-    [FormerlySerializedAs("_flipable")] [SerializeField] protected Mover _mover;
+    [FormerlySerializedAs("_mover")] [SerializeField] protected DirectionSwitcher _directionSwitcher;
 
     protected Animator Animator;
     
     private void OnEnable() => 
-        _mover.DirectionSwitched += Flip;
+        _directionSwitcher.DirectionSwitched += Flip;
 
     private void OnDisable() => 
-        _mover.DirectionSwitched -= Flip;
+        _directionSwitcher.DirectionSwitched -= Flip;
 
     private void Awake() => 
         Animator = GetComponent<Animator>();

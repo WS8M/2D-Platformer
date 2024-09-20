@@ -2,7 +2,7 @@ using UnityEngine;
 
 [RequireComponent(
     typeof(PlayerInput),
-    typeof(PlayerMover), 
+    typeof(PlayerDirectionSwitcher), 
     typeof(Jumper))]
 public class Player : MonoBehaviour, IHealthRecoverable
 {
@@ -10,7 +10,7 @@ public class Player : MonoBehaviour, IHealthRecoverable
     [SerializeField] private Health _health;
     
     private PlayerInput _input;
-    private PlayerMover _mover;
+    private PlayerDirectionSwitcher _directionSwitcher;
     private Jumper _jumper;
 
     private void OnEnable()
@@ -26,13 +26,13 @@ public class Player : MonoBehaviour, IHealthRecoverable
     private void Awake()
     {
         _input = GetComponent<PlayerInput>();
-        _mover = GetComponent<PlayerMover>();
+        _directionSwitcher = GetComponent<PlayerDirectionSwitcher>();
         _jumper = GetComponent<Jumper>();
     }
 
     private void FixedUpdate()
     {
-        _mover.Walk(_input.HorizontalInput);
+        _directionSwitcher.Walk(_input.HorizontalInput);
         _jumper.Jump(_input);
     }
 

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyMover : Mover
+public class EnemyDirectionSwitcher : DirectionSwitcher
 {
     private const float MinDistanceForMove = 0.1f;
     private const int RightDirection = 1;

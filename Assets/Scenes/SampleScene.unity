@@ -1463,7 +1463,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spriteRenderer: {fileID: 594122913}
-  _mover: {fileID: 1513947740}
+  _directionSwitcher: {fileID: 1513947740}
   _jumper: {fileID: 1513947737}
 --- !u!95 &594122912
 Animator:
@@ -2087,7 +2087,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: {fileID: 1135209866}
-  _mover: {fileID: 1135209860}
+  _directionSwitcher: {fileID: 1135209860}
   _waypointsFollower: {fileID: 1135209863}
   _playerStalk: {fileID: 2099779798}
   _dieBehavior: {fileID: 1153540077}
@@ -2280,7 +2280,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spriteRenderer: {fileID: 1153540067}
-  _mover: {fileID: 1135209860}
+  _directionSwitcher: {fileID: 1135209860}
 --- !u!95 &1153540071
 Animator:
   serializedVersion: 5
