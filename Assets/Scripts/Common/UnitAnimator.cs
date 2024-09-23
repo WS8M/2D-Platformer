@@ -1,11 +1,10 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Animator))]
 public class UnitAnimator : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer _spriteRenderer;
-    [FormerlySerializedAs("_mover")] [SerializeField] protected DirectionSwitcher _directionSwitcher;
+    [SerializeField] protected DirectionSwitcher _directionSwitcher;
 
     protected Animator Animator;
     

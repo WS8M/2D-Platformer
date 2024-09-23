@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerInput))]
-public class PlayerDirectionSwitcher : DirectionSwitcher 
+public class PlayerMover : DirectionSwitcher 
 {
     public void Walk(float horizontalInput)
     {

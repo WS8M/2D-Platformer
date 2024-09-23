@@ -4,7 +4,7 @@ using UnityEngine.Serialization;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private Health _health;
-    [FormerlySerializedAs("_mover")] [FormerlySerializedAs("_flipable")] [SerializeField] private EnemyDirectionSwitcher _directionSwitcher;
+    [FormerlySerializedAs("_directionSwitcher")] [SerializeField] private EnemyMover _mover;
     [SerializeField] private WaypointsFollower _waypointsFollower;
     [SerializeField] private PlayerStalk _playerStalk;
     [SerializeField] private DieBehavior _dieBehavior;
@@ -12,9 +12,9 @@ public class Enemy : MonoBehaviour
     private void FixedUpdate()
     {
         if (_playerStalk.TryGetPlayerPosition(out Vector3 position))
-            _directionSwitcher.Walk(position);
+            _mover.Walk(position);
         else
-            _directionSwitcher.Walk(_waypointsFollower.GetTargetPosition());
+            _mover.Walk(_waypointsFollower.GetTargetPosition());
     }
 
     private void OnEnable()
